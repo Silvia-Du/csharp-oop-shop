@@ -1,30 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-/*
-  Creare una classe Prodotto che gestisce i prodotti dello shop.
-Un prodotto è caratterizzato da:
-codice (numero intero)
-nome
-descrizione
-prezzo
-iva
-Usate opportunamente i livelli di accesso (public, private):
-i costruttori,
-i metodi getter e setter
-eventuali altri metodi di “utilità” per fare in modo che:
-alla creazione di un nuovo prodotto il codice sia valorizzato con un numero random
-Il codice prodotto sia accessibile solo in lettura
-Gli altri attributi siano accessibili sia in lettura che in scrittura
-Il prodotto esponga sia un metodo per avere il prezzo base che uno per avere il prezzo comprensivo di iva
-Il prodotto esponga un metodo per avere il nome esteso, ottenuto concatenando codice + nome
-Nella vostro programma principale, testate tutte le funzionalità della classe Prodotto.
-BONUS: create un metodo che restituisca il codice con un pad left di 0 per arrivare a 8 caratteri 
-(ad esempio codice 91 diventa 00000091, mentre codice 123445567 resta come è)
-Buon lavoro!  
-*/
 
-//caricare lavatrice: ripropongo il funzionamento della mia lavatrice.caricare panni,
-//scaricarli, etc, quando avvio il progr: piccolo menu con funz da poter prendere pensa all'interfaccia.
+
+
 public class Product
 {
     int productCode;
@@ -37,7 +15,7 @@ public class Product
 
 
     //costruttore
-    public Product(int productCode, string name, float price, string descripton)
+    public Product(string name, float price, string descripton)
     {
         
         this.productCode = new Random().Next(1, 100);
@@ -63,12 +41,27 @@ public class Product
     }
 
 
-    public void SetChangeData(int productCode, string name, float price)
+    public void SetChangeData(string name, float price)
     {
-        this.productCode = productCode;
+        this.productCode = new Random().Next(1, 100);
         this.name = name;
         this.price = price;
 
+    }
+
+    //BONUS
+
+    public string GetAdvancedCode()
+    {
+        string newCode = productCode.ToString();
+        int zeroBase = 8 - newCode.Length;
+        string zero = null;
+        for(int i = 0; i< zeroBase; i++)
+        {
+            zero += "0";
+        }
+        
+        return zero+newCode;
     }
 
     //GETTER
@@ -89,28 +82,32 @@ public class Product
     }
     public float GetTaxedPrice()
     {
-        return price + (iva % 100 * price);
+        return price + ((price * iva) / 100);
+        
     }
 
-    public int getProductCode()
+    public int GetProductCode()
     {
         return this.productCode;
     }
 
     public string GetProductFullName()
     {
-        return this.productCode+ this.name;
+        return GetAdvancedCode()+"-"+ this.name;
     }
 
 
 
-    public void getProductData()
+    public void GetProductData()
     {
-        Console.WriteLine($"Nome prodotto: {this.name}," +
-            $"Codice prodotto: {this.productCode}," +
-            $"Prezzo: {this.price}," +
-            $"Descrizione: {this.descripton}," +
-            $"Iva applicata: {this.iva}");
+        Console.WriteLine($"Nome prodotto: {this.name}");
+        Console.WriteLine($"Codice: {this.productCode}");
+        Console.WriteLine($"Codice avanzato: {GetAdvancedCode()};");
+        Console.WriteLine($"Prezzo: {this.price}");
+        Console.WriteLine($"Descrizione: {this.descripton}");
+        Console.WriteLine($"Iva appicata: {this.iva}");
+        Console.WriteLine($"Prezzo comprensivo di iva: {GetTaxedPrice()}");
+
     }
     
 }
