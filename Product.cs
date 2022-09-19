@@ -3,6 +3,8 @@
 
 
 
+using System.Runtime.ConstrainedExecution;
+
 public class Product
 {
     int productCode;
@@ -80,10 +82,15 @@ public class Product
     {
         return this.price;
     }
-    public float GetTaxedPrice()
+    public double GetTaxedPrice()
     {
-        return price + ((price * iva) / 100);
-        
+        double newPrice = price + ((price * iva) / 100);
+
+        return Math.Round(newPrice, 2);
+
+
+
+
     }
 
     public int GetProductCode()
