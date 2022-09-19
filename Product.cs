@@ -13,7 +13,6 @@ public class Product
     float price;
     int iva = 25;
 
-    //string key = "password-code";
 
 
     //costruttore
@@ -102,7 +101,7 @@ public class Product
 
 
 
-    public void GetProductData()
+    public void DataPrinter()
     {
         Console.WriteLine($"Nome prodotto: {this.name}");
         Console.WriteLine($"Codice: {this.productCode}");

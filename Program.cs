@@ -34,7 +34,7 @@ Product patatine = new Product("Patatine rigate", 2.99F, "patatine rigate al for
 
 //stampa in pagina con metodo per verifica aquisizione tutti i dati della nuova istanza
 
-patatine.GetProductData();
+patatine.DataPrinter();
 
 
 Console.WriteLine("Codice prodotto completo: "+patatine.GetProductFullName());
@@ -45,7 +45,7 @@ Console.WriteLine();
 
 patatine.SetChangeData("Patatine tonde", 2.29F);
 
-patatine.GetProductData();
+patatine.DataPrinter();
 
 
 
