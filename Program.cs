@@ -37,7 +37,7 @@ Product patatine = new Product("Patatine rigate", 2.99F, "patatine rigate al for
 patatine.DataPrinter();
 
 
-Console.WriteLine("Codice prodotto completo: "+patatine.GetProductFullName());
+Console.WriteLine("Codice prodotto completo: "+patatine.GetFullName());
 
 Console.WriteLine("------");
 Console.WriteLine("Prodotto dopo la modifica dei dati;");

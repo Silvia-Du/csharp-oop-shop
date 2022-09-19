@@ -26,17 +26,17 @@ public class Product
 
     }
     //SETTER
-    public void SetProductDescription(string descripton)
+    public void SetDescription(string descripton)
     {
             this.descripton = descripton;
     }
 
-    public void SetProductName(string name)
+    public void SetName(string name)
     {
         this.name = name.ToLower();
     }
 
-    public void SetProductprice(int price)
+    public void SetPrice(int price)
     {
         this.price = price;
     }
@@ -67,17 +67,17 @@ public class Product
 
     //GETTER
 
-    public string GetProductDescription()
+    public string GetDescription()
     {
         return this.descripton;
     }
 
-    public string GetProductName()
+    public string GetName()
     {
         return this.name;
     }
 
-    public float GetProductprice()
+    public float GetPrice()
     {
         return this.price;
     }
@@ -94,7 +94,7 @@ public class Product
         return this.productCode;
     }
 
-    public string GetProductFullName()
+    public string GetFullName()
     {
         return GetAdvancedCode()+"-"+ this.name;
     }
