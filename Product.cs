@@ -88,9 +88,6 @@ public class Product
 
         return Math.Round(newPrice, 2);
 
-
-
-
     }
 
     public int GetProductCode()
