@@ -14,11 +14,9 @@ public abstract class Product
     int ProductCode { get; set; }
     string Descripton { get; set; }
     float Price { get; set; }
-
-
-    int iva = 25;
+    virtual int iva;
     //costruttore
-    public Product(string name, int price)
+    public Product(string name, float price)
     {
         this.ProductCode = new Random().Next(1, 100);
         this.Name = name;
@@ -26,7 +24,7 @@ public abstract class Product
     }
 
     //costruttore
-    public Product(string name, int price, string descripton) :this(name, price)
+    public Product(string name, float price, string descripton) :this(name, price)
     {
         
         this.Descripton = descripton;
@@ -77,10 +75,10 @@ public abstract class Product
 
     public virtual string ProductPrinter()
     {
-        return $"Nome prodotto: {Name};  \t " +
-            $"Codice: {GetAdvancedCode()}; \t Prezzo: {Price}; \t " +
-            $"Descrizione: {Descripton}; \t Iva appicata: {iva}; \t" +
-            $"Prezzo comprensivo di iva: {GetTaxedPrice(Price)}";
+        return $"Nome prodotto: {Name}; \n " +
+            $"Codice: {GetAdvancedCode()}; \n Prezzo: {Price}; \n " +
+            $"\n Iva appicata: {iva}; \n" +
+            $" Prezzo comprensivo di iva: {GetTaxedPrice(Price)}";
 
     }
 }

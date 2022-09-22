@@ -26,58 +26,14 @@ Buon lavoro!
 //caricare lavatrice: ripropongo il funzionamento della mia lavatrice.caricare panni,
 //scaricarli, etc, quando avvio il progr: piccolo menu con funz da poter prendere pensa all'interfaccia.
 
-using System.Diagnostics;
-using System.Xml.Linq;
+public interface ICart
+{
+    public void AddToCart();
 
+    public void RemoveToCart();
 
-//Product patatine = new Product("Patatine rigate", 2.99F, "patatine rigate al forno in olio extravergine");
-
-//stampa in pagina con metodo per verifica aquisizione tutti i dati della nuova istanza
-
-//patatine.DataPrinter();
-
-
-//Console.WriteLine("Codice prodotto completo: "+patatine.GetFullName());
-
-//Console.WriteLine("------");
-//Console.WriteLine("Prodotto dopo la modifica dei dati;");
-//Console.WriteLine();
-
-//patatine.SetChangeData("Patatine tonde", 2.29F);
-
-//patatine.DataPrinter();
-
-BottleWater santAnna = new BottleWater("Sant'anna", 1.5F , "frizzante", 0.5F, 5, "Montagna di Sant'Anna");
-Console.WriteLine(santAnna.ProductPrinter());
-
-FruitsBag meleSecche = new FruitsBag("meline secchine", 2.5F, 5, "Italia");
-meleSecche.FruitType = "mele";
-Console.WriteLine(meleSecche.ProductPrinter());
-
-public class Shop{
-
-    List<Product> cart;
-    string Name { get; set; }
-
-    string Description { get; set; }
-
-    public Shop(string name, string description)
-    {
-        Name = name;
-        Description = description;
-        cart = new List<Product>();
-    }
-
-    // aggiungere un prodotto al carrello,
-
-
-
-
-    //rimuovere un prodotto
-
-
-    //
-
-
+    public void GetLikeProduct();
 }
+
+
 

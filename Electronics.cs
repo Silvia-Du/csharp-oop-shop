@@ -26,14 +26,14 @@ Buon lavoro!
 //caricare lavatrice: ripropongo il funzionamento della mia lavatrice.caricare panni,
 //scaricarli, etc, quando avvio il progr: piccolo menu con funz da poter prendere pensa all'interfaccia.
 
-public class Electronics : Product
+public class Appliance : Product
 {
 
     string Category { get; }
     byte AgeOfUse { get; set; }
     string Warnings { get; set; }
 
-    public Electronics(string name, int price, string category) : base(name, price)
+    public Appliance(string name, int price, string category) : base(name, price)
     {
         this.Category = category;
     }

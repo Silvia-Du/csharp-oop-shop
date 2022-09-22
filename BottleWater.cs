@@ -26,9 +26,9 @@ Buon lavoro!
 //caricare lavatrice: ripropongo il funzionamento della mia lavatrice.caricare panni,
 //scaricarli, etc, quando avvio il progr: piccolo menu con funz da poter prendere pensa all'interfaccia.
 
-public class BottleWater : Product
+public class BottleWater : Product, ICart
 {
-   
+    public int Like { get; set; } = 0;
     float MaxLitri { get; } = 1.5F;
     string Wathertype { get; set; }
     string BottleMatherial { get; set; }
@@ -39,7 +39,7 @@ public class BottleWater : Product
 
     //costruttore
 
-    public BottleWater(string name, int price, string wathertype, float liters, byte ph, string origin) : base(name, price)
+    public BottleWater(string name, float price, string wathertype, float liters, byte ph, string origin) : base(name, price)
     {
         this.Wathertype = wathertype;
         if (liters < this.MaxLitri)
@@ -48,33 +48,34 @@ public class BottleWater : Product
         }
         this.PH = ph;
         this.Origin = origin;
+        
     }
 
     //metodo bevi(double litriDaBere) che toglie dall’attributo litri una quantità pari a litriDaBere di acqua se presenti.
 
-    public static double Drink(float litersToDrink, float liters)
+    public double Drink(float litersToDrink)
     {
         double restOfWater; 
-        if(litersToDrink < liters)
+        if(litersToDrink < Liters)
         {
-            restOfWater = liters - litersToDrink;
+            restOfWater = Liters - litersToDrink;
         }
         else
         {
-            restOfWater = liters;
+            restOfWater = Liters;
         }
 
         return (double)restOfWater;
     }
 
 
-    //metodo riempi(double litri) che riempie la bottiglia di acqua con tot litri di acqua, stando attenti a non riempirla troppo.
-    public static double Fill(float restOfWater, float liters)
+    //metodo riempi(double litri)
+    public double Fill(float restOfWater)
     {
         double waterToAdd;
-        if(restOfWater < liters)
+        if(restOfWater < Liters)
         {
-            waterToAdd = liters - restOfWater;
+            waterToAdd = Liters - restOfWater;
         }
         else
         {
@@ -86,34 +87,43 @@ public class BottleWater : Product
 
     //metodo svuota() che rimuove tutta l’acqua dalla bottiglia.
 
-    public static void ToEmpty()
+    public void ToEmpty()
     {
+
         Console.WriteLine("Acqua svuotata completamente!");
     }
 
-    //metodo stampaProdotto() che fa l’override del metodo di base StampaProdotto già dichiarato nella superclasse Prodotto
-    //(se non lo avete già fatto dichiaratelo anche nella
-    //classe prodotto è si occupa di stampare il “codice - nome”,l lo abbiamo chiamato NomeEsteso),
-    //per stampare oltre al codice e al nome dell’acqua,
-    //anche la sua sorgente, il ph e i litri contenuti.
-
+    //metodo stampaProdotto() che fa l’override del metodo di base StampaProdotto già dichiarato 
     public override string ProductPrinter()
     {
 
-        return base.ProductPrinter() + $" Sorgente : {Origin}; \t Ph: {PH}; \t Litri: {Liters}";
+        return base.ProductPrinter() + $"\n Sorgente : {Origin}; \n Ph: {PH}; \n Litri: {Liters}";
     }
 
     //un metodo statico convertiInGalloni(double litri) che presa una quantità di litri restituisca
-    //la conversione dei litri in galloni, sapendo che 1
-    //litro è equivalente a 3,785 galloni (ricordatevi di codificare le costanti come 3.785 nel modo
-    //corretto come visto in classe).
-    public static double Convert(float liters)
+    //la conversione dei litri in galloni
+    public double Convert(float liters)
     {
         float gallons = 3.785F;
         double unitCoverted = liters * gallons;
         return (double)unitCoverted;
     }
 
+    public void AddToCart()
+    {
+        Console.WriteLine($"Acqua aggiunta al carrello correttamente");
+    }
+
+    public void RemoveToCart()
+    {
+        Console.WriteLine($"Acqua rimossa dal carrello");
+    }
+
+    public void GetLikeProduct()
+    {
+        Like++;
+        Console.WriteLine("Grazie hai dato a questo prodotto un punto qualità!");
+    }
 }
 
 

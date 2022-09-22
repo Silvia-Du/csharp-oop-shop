@@ -30,17 +30,23 @@ public class FruitsBag : Product
 {
 
     byte MaxPieces { get; } = 5;
-    string FruitType { get; set; }
+    public string FruitType { get; set; }
     bool biologic { get; set; } = false;
     string Origin { get; }
     byte Pieces { get; }
 
     //costruttore
-    public FruitsBag(string name, int price, byte pieces, string origin) : base(name, price)
+    public FruitsBag(string name, float price, byte pieces, string origin) : base(name, price)
     {
         this.biologic = biologic;
         this.Origin = origin;
         this.Pieces = pieces;
+    }
+
+    public override string ProductPrinter()
+    {
+
+        return base.ProductPrinter() + $"\n Origine : {Origin}; \n Pezzi nella confezione: {Pieces}; \n Frutto: {FruitType}";
     }
 
 }
