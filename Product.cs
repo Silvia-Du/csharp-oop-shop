@@ -57,9 +57,9 @@ public abstract class Product
     }
 
     //GETTER
-    public double GetTaxedPrice()
+    public double GetTaxedPrice(float price)
     {
-        double newPrice = Price + ((Price * iva) / 100);
+        double newPrice = price + ((price * this.iva) / 100);
 
         return Math.Round(newPrice, 2);
 
@@ -67,17 +67,21 @@ public abstract class Product
 
     public string GetFullName()
     {
-        return GetAdvancedCode() + "-" + this.Name;
+        return GetAdvancedCode() + "-" + Name;
+    }
+
+    public string FullNamePrinter()
+    {
+        return $"Il prodotto: {GetFullName()}";
     }
 
 
-
-    public string ProductPrinter()
+    public virtual string ProductPrinter()
     {
-        return $"Nome prodotto: {this.Name};  \t " +
-            $"Codice: {GetAdvancedCode()}; \t Prezzo: {this.Price}; \t " +
-            $"Descrizione: {this.Descripton}; \t Iva appicata: {this.iva}; \t" +
-            $"Prezzo comprensivo di iva: {GetTaxedPrice()}";
+        return $"Nome prodotto: {Name};  \t " +
+            $"Codice: {GetAdvancedCode()}; \t Prezzo: {Price}; \t " +
+            $"Descrizione: {Descripton}; \t Iva appicata: {iva}; \t" +
+            $"Prezzo comprensivo di iva: {GetTaxedPrice(Price)}";
 
     }
 }

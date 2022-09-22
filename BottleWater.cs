@@ -33,18 +33,21 @@ public class BottleWater : Product
     string Wathertype { get; set; }
     string BottleMatherial { get; set; }
     float Liters { get; set; }
+
+    string Origin { get; set; }
     byte PH { get; }
 
     //costruttore
 
-    public BottleWater(string name, int price, string wathertype, float liters, byte ph) : base(name, price)
+    public BottleWater(string name, int price, string wathertype, float liters, byte ph, string origin) : base(name, price)
     {
         this.Wathertype = wathertype;
-        if(liters < this.MaxLitri)
+        if (liters < this.MaxLitri)
         {
             this.Liters = liters;
         }
         this.PH = ph;
+        this.Origin = origin;
     }
 
     //metodo bevi(double litriDaBere) che toglie dall’attributo litri una quantità pari a litriDaBere di acqua se presenti.
@@ -66,17 +69,28 @@ public class BottleWater : Product
 
 
     //metodo riempi(double litri) che riempie la bottiglia di acqua con tot litri di acqua, stando attenti a non riempirla troppo.
-    public static double Fill()
+    public static double Fill(float restOfWater, float liters)
     {
-
+        double waterToAdd;
+        if(restOfWater < liters)
+        {
+            waterToAdd = liters - restOfWater;
+        }
+        else
+        {
+            waterToAdd = -1;
+            //imposterò che se ritorna -1 allora non si può fare l'addizione di acqua
+        }
+            return waterToAdd;
     }
 
     //metodo svuota() che rimuove tutta l’acqua dalla bottiglia.
 
-    public static ToEmpty()
+    public static void ToEmpty()
     {
-
+        Console.WriteLine("Acqua svuotata completamente!");
     }
+
     //metodo stampaProdotto() che fa l’override del metodo di base StampaProdotto già dichiarato nella superclasse Prodotto
     //(se non lo avete già fatto dichiaratelo anche nella
     //classe prodotto è si occupa di stampare il “codice - nome”,l lo abbiamo chiamato NomeEsteso),
@@ -86,15 +100,18 @@ public class BottleWater : Product
     public override string ProductPrinter()
     {
 
+        return base.ProductPrinter() + $" Sorgente : {Origin}; \t Ph: {PH}; \t Litri: {Liters}";
     }
 
     //un metodo statico convertiInGalloni(double litri) che presa una quantità di litri restituisca
     //la conversione dei litri in galloni, sapendo che 1
     //litro è equivalente a 3,785 galloni (ricordatevi di codificare le costanti come 3.785 nel modo
     //corretto come visto in classe).
-    public static Convert()
+    public static double Convert(float liters)
     {
-
+        float gallons = 3.785F;
+        double unitCoverted = liters * gallons;
+        return (double)unitCoverted;
     }
 }
 
