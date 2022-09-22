@@ -26,28 +26,24 @@ Buon lavoro!
 //caricare lavatrice: ripropongo il funzionamento della mia lavatrice.caricare panni,
 //scaricarli, etc, quando avvio il progr: piccolo menu con funz da poter prendere pensa all'interfaccia.
 
-using System.Diagnostics;
-using System.Xml.Linq;
+public class FruitsBag : Product
+{
 
+    byte MaxPieces { get; } = 5;
+    string FruitType { get; set; }
+    bool biologic { get; set; } = false;
+    string Origin { get; }
+    byte Pieces { get; }
 
-//Product patatine = new Product("Patatine rigate", 2.99F, "patatine rigate al forno in olio extravergine");
+    //costruttore
+    public FruitsBag(string name, int price, byte pieces, string origin) : base(name, price)
+    {
+        this.biologic = biologic;
+        this.Origin = origin;
+        this.Pieces = pieces;
+    }
 
-//stampa in pagina con metodo per verifica aquisizione tutti i dati della nuova istanza
-
-//patatine.DataPrinter();
-
-
-//Console.WriteLine("Codice prodotto completo: "+patatine.GetFullName());
-
-//Console.WriteLine("------");
-//Console.WriteLine("Prodotto dopo la modifica dei dati;");
-//Console.WriteLine();
-
-//patatine.SetChangeData("Patatine tonde", 2.29F);
-
-//patatine.DataPrinter();
-
-Console.WriteLine("ciao");
+}
 
 
 

@@ -3,114 +3,81 @@
 
 
 
+using System.Diagnostics;
 using System.Runtime.ConstrainedExecution;
+using System.Xml.Linq;
 
-public class Product
+public abstract class Product
 {
-    int productCode;
-    string name;
-    string descripton;
-    float price;
+    string Name { get; set; }
+    string Brandt { get; set; }
+    int ProductCode { get; set; }
+    string Descripton { get; set; }
+    float Price { get; set; }
+
+
     int iva = 25;
-
-
+    //costruttore
+    public Product(string name, int price)
+    {
+        this.ProductCode = new Random().Next(1, 100);
+        this.Name = name;
+        this.Price = price;
+    }
 
     //costruttore
-    public Product(string name, float price, string descripton)
+    public Product(string name, float price, string descripton) :this()
     {
         
-        this.productCode = new Random().Next(1, 100);
-        this.name = name;
-        this.price = price;
-        this.descripton = descripton;
+        
+        this.Descripton = descripton;
 
     }
-    //SETTER
-    public void SetDescription(string descripton)
-    {
-            this.descripton = descripton;
-    }
-
-    public void SetName(string name)
-    {
-        this.name = name.ToLower();
-    }
-
-    public void SetPrice(int price)
-    {
-        this.price = price;
-    }
-
 
     public void SetChangeData(string name, float price)
     {
-        this.productCode = new Random().Next(1, 100);
-        this.name = name;
-        this.price = price;
+        this.ProductCode = new Random().Next(1, 100);
+        this.Name = name;
+        this.Price = price;
 
     }
 
     //BONUS
-
     public string GetAdvancedCode()
     {
-        string newCode = productCode.ToString();
+        string newCode = ProductCode.ToString();
         int zeroBase = 8 - newCode.Length;
         string zero = null;
-        for(int i = 0; i< zeroBase; i++)
+        for (int i = 0; i < zeroBase; i++)
         {
             zero += "0";
         }
-        
-        return zero+newCode;
+
+        return zero + newCode;
     }
 
     //GETTER
-
-    public string GetDescription()
-    {
-        return this.descripton;
-    }
-
-    public string GetName()
-    {
-        return this.name;
-    }
-
-    public float GetPrice()
-    {
-        return this.price;
-    }
     public double GetTaxedPrice()
     {
-        double newPrice = price + ((price * iva) / 100);
+        double newPrice = Price + ((Price * iva) / 100);
 
         return Math.Round(newPrice, 2);
 
     }
 
-    public int GetProductCode()
-    {
-        return this.productCode;
-    }
-
     public string GetFullName()
     {
-        return GetAdvancedCode()+"-"+ this.name;
+        return GetAdvancedCode() + "-" + this.Name;
     }
 
 
 
-    public void DataPrinter()
+    public string ProductPrinter()
     {
-        Console.WriteLine($"Nome prodotto: {this.name}");
-        Console.WriteLine($"Codice: {this.productCode}");
-        Console.WriteLine($"Codice avanzato: {GetAdvancedCode()};");
-        Console.WriteLine($"Prezzo: {this.price}");
-        Console.WriteLine($"Descrizione: {this.descripton}");
-        Console.WriteLine($"Iva appicata: {this.iva}");
-        Console.WriteLine($"Prezzo comprensivo di iva: {GetTaxedPrice()}");
+        return $"Nome prodotto: {this.Name};  \t " +
+            $"Codice: {GetAdvancedCode()}; \t Prezzo: {this.Price}; \t " +
+            $"Descrizione: {this.Descripton}; \t Iva appicata: {this.iva}; \t" +
+            $"Prezzo comprensivo di iva: {GetTaxedPrice()}";
 
     }
-    
 }
