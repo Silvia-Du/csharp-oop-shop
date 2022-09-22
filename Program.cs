@@ -47,7 +47,6 @@ using System.Xml.Linq;
 
 //patatine.DataPrinter();
 
-Console.WriteLine("ciao");
-
+BottleWater santAnna = new BottleWater("Sant'anna")
 
 

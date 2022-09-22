@@ -26,9 +26,8 @@ public abstract class Product
     }
 
     //costruttore
-    public Product(string name, float price, string descripton) :this()
+    public Product(string name, int price, string descripton) :this(name, price)
     {
-        
         
         this.Descripton = descripton;
 
