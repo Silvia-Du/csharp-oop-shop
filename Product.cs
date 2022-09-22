@@ -14,7 +14,7 @@ public abstract class Product
     int ProductCode { get; set; }
     string Descripton { get; set; }
     float Price { get; set; }
-    virtual int iva;
+    int iva = 25;
     //costruttore
     public Product(string name, float price)
     {
